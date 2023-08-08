@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #212121;
+  color: aliceblue;
+  width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 25px;
+}
