@@ -9,12 +9,6 @@ export default function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const feedbackOptions = {
-    good,
-    neutral,
-    bad,
-  };
-
   const handleLeaveFeedback = option => {
     switch (option) {
       case 'good':
@@ -26,16 +20,19 @@ export default function App() {
       case 'bad':
         setBad(prevState => prevState + 1);
         break;
+      default:
+        console.error('opps');
     }
   };
 
-  const countTotalFeedback = () => {
-    return good + neutral + bad;
-  };
-
-  const countPositiveFeedbackPercentage = () => {
-    let formatedNumber = Math.round((good / (good + neutral + bad)) * 100);
-    return formatedNumber;
+  const countTotalFeedback = good + neutral + bad;
+  const countPositiveFeedbackPercentage = Math.round(
+    (good / (good + neutral + bad)) * 100
+  );
+  const feedbackOptions = {
+    good,
+    neutral,
+    bad,
   };
 
   return (
@@ -47,13 +44,13 @@ export default function App() {
         ></FeedbackOptions>
       </Section>
       <Section title="Statistics">
-        {countTotalFeedback() === 0 ? (
+        {countTotalFeedback === 0 ? (
           <Notification message="There is no feedback" />
         ) : (
           <Statistics
             options={feedbackOptions}
-            totalFeedback={countTotalFeedback()}
-            positiveFeedback={countPositiveFeedbackPercentage()}
+            totalFeedback={countTotalFeedback}
+            positiveFeedback={countPositiveFeedbackPercentage}
           ></Statistics>
         )}
       </Section>
